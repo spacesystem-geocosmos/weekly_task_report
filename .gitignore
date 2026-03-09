@@ -1,0 +1,35 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Build / distribution
+build/
+dist/
+*.egg-info/
+
+# PyInstaller
+*.spec
+*.exe
+*.dll
+*.pyd
+*.log
+*.pyz
+*.tar.gz
+
+# IDE / editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output / reports
+weekly_report_output*.xlsx
+Space Systems Division.xlsx
