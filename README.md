@@ -73,8 +73,4 @@ Output will appear under `dist/` and `build/`.
 
 ## 📎 License
 
-(Include whichever license applies or remove this section.)
-
----
-
-Feel free to modify the script to fit your team's workflow or to convert the input source. Questions or improvements welcome!
+Private
