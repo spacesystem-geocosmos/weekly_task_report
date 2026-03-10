@@ -6,6 +6,10 @@ import sys
 # change working directory to the script/exe's directory so output goes there
 os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
 
+# ensure output directory exists (keeps repo clean by writing generated files to a single place)
+OUTPUT_DIR = "reports"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 # ===== load the workbook =====
 file = "Space Systems Division.xlsx"   # adjust if the filename differs
 df = pd.read_excel(file)
@@ -102,7 +106,7 @@ planned_df = pd.DataFrame({"Task Name": planned_next_week["Task Name"].unique()}
 # export everything to an Excel workbook
 import os
 print("current working directory is", os.getcwd())
-output_file = f"weekly_report_output_{today.strftime('%Y-%m-%d')}.xlsx"
+output_file = os.path.join(OUTPUT_DIR, f"weekly_report_output_{today.strftime('%Y-%m-%d')}.xlsx")
 print("will write to", os.path.abspath(output_file))
 with pd.ExcelWriter(output_file, engine="openpyxl") as writer:
     metrics.to_excel(writer, sheet_name="Metrics")

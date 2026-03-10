@@ -31,5 +31,6 @@ dist/
 Thumbs.db
 
 # Output / reports
+reports/
 weekly_report_output*.xlsx
 Space Systems Division.xlsx
