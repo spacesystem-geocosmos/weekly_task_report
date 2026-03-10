@@ -28,9 +28,25 @@ weekly_report.spec       # PyInstaller spec file for building an executable
 > pip install -r requirements.txt
 > ```
 
-## 📝 Input
+## � Input data (what the script expects)
 
-Place the Excel export file from whatever tracking system you use in the repository root and name it `Space Systems Division.xlsx` (or adjust the script accordingly).
+The script reads an Excel workbook (`.xlsx`) and expects the following columns to exist (case-sensitive):
+
+- `Task Name` – the title or short description of the task.
+- `Bucket Name` – used to classify tasks (e.g., `Tasks`, `Ready For Review`, `Completed`). Rows with `Bucket Name` containing `Blocked`, `Archive`, `Archived`, or `Discontinued` are ignored.
+- `Assigned To` – a semicolon-separated list of assignees (e.g., `Alice; Bob`). The script expands multi‑assignee cells and currently filters to a small team by name.
+- `Due date` – a date/datetime used to identify overdue and upcoming work.
+- `Completed Date` – a date/datetime used to identify what was finished in the last week.
+- `Progress` – used to ignore items already marked as `Completed`.
+- `Priority` – used to identify `Urgent` items.
+
+
+## 📁 Where to put the data files
+
+Place one or more Excel exports (`.xlsx` files) in the repository root (next to `weekly_report.py`).
+
+**All** `.xlsx` files in the directory will be processed automatically. Each will generate a separate report in the `reports/` folder, named after the input file.
+
 
 ## 🚀 Running the report
 
@@ -46,14 +62,16 @@ or run directly:
 python weekly_report.py
 ```
 
-The script will create a `reports/` directory and write a timestamped workbook containing:
+The script will process every `.xlsx` file in the directory, creating a separate report for each in the `reports/` folder. Each output file will be named after the input file (e.g., `MyInput.xlsx` → `reports/MyInput_weekly_report_YYYY-MM-DD.xlsx`).
+
+Each report contains:
 
 * **Metrics** – per-person counts for late tasks, urgent items, etc.
 * **Late Details** – list of overdue items
 * **Done Last Week** – tasks completed in the previous 7 days
 * **Planned Next Week** – tasks due in the coming week
 
-It also prints text summaries to the console.
+Text summaries are printed to the console for each input file.
 
 ## 🛠️ Building an executable
 
